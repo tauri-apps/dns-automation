@@ -1,0 +1,9 @@
+/.terraform.lock.hcl
+/terraform.tfstate
+/.idea/
+/.terraform/
+/venv/
+/terraform/tauri-ops-test.dev/.terraform.lock.hcl
+/terraform/tauri-ops-test.dev/.terraform/
+/terraform/tauri-ops-test.net/.terraform.lock.hcl
+/terraform/tauri-ops-test.net/.terraform/
