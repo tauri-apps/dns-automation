@@ -57,6 +57,8 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: tauri-ops-test.dev
+    env:
+      TERRAFORM_CLI_PATH: ${{vars.TERRAFORM_PATH}}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -71,9 +73,6 @@ jobs:
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-
-    - name: Change directory
-      run: cd ${{vars.TERRAFORM_PATH}}
    
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
