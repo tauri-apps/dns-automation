@@ -79,6 +79,9 @@ jobs:
     - name: Change directory
       run:
         cd ${{vars.TERRAFORM_PATH}}
+
+    - name: List
+      run:
         ls -la
 
 #    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
