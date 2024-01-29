@@ -5,8 +5,8 @@ import {
 
 resource "cloudflare_record" "autodiscover_thunderbird" {
   zone_id = var.cloudflare_zone_id
-  type = "CNAME"
-  name = "autoconfig"
-  value = "autoconfig.migadu.com"
+  type    = "CNAME"
+  name    = "autoconfig"
+  value   = "autoconfig.migadu.com"
   comment = "Optional autodiscovery - Thunderbird"
 }

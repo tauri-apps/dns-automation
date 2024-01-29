@@ -5,7 +5,7 @@ import {
 
 resource "cloudflare_record" "mail_verify" {
   zone_id = var.cloudflare_zone_id
-  type = "TXT"
-  name = var.domain
-  value = "hosted-email-verify=ld6btrgm"
+  type    = "TXT"
+  name    = var.domain
+  value   = "hosted-email-verify=ld6btrgm"
 }

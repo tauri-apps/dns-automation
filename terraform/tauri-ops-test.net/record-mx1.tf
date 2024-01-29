@@ -4,9 +4,9 @@ import {
 }
 
 resource "cloudflare_record" "mx1" {
-  zone_id = var.cloudflare_zone_id
-  type = "MX"
-  name = var.domain
+  zone_id  = var.cloudflare_zone_id
+  type     = "MX"
+  name     = var.domain
   priority = 10
-  value = "aspmx1.migadu.com"
+  value    = "aspmx1.migadu.com"
 }

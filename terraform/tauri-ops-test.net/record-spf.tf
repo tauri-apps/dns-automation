@@ -5,7 +5,7 @@ import {
 
 resource "cloudflare_record" "spf" {
   zone_id = var.cloudflare_zone_id
-  type = "TXT"
-  name = var.domain
-  value = "v=spf1 include:spf.migadu.com -all"
+  type    = "TXT"
+  name    = var.domain
+  value   = "v=spf1 include:spf.migadu.com -all"
 }

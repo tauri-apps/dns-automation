@@ -5,16 +5,16 @@ import {
 
 resource "cloudflare_record" "autodiscover_pop3s" {
   zone_id = var.cloudflare_zone_id
-  type = "SRV"
-  name = "_pop3s._tcp"
+  type    = "SRV"
+  name    = "_pop3s._tcp"
   comment = "Optional autodiscovery - Standard"
   data {
-    name = var.domain
-    port = 995
+    name     = var.domain
+    port     = 995
     priority = 0
-    proto = "_tcp"
-    service = "_pop3s"
-    target = "pop.migadu.com"
-    weight = 1
+    proto    = "_tcp"
+    service  = "_pop3s"
+    target   = "pop.migadu.com"
+    weight   = 1
   }
 }

@@ -5,16 +5,16 @@ import {
 
 resource "cloudflare_record" "autodiscover_imaps" {
   zone_id = var.cloudflare_zone_id
-  type = "SRV"
-  name = "_imaps._tcp"
+  type    = "SRV"
+  name    = "_imaps._tcp"
   comment = "Optional autodiscovery - Standard"
   data {
-    name = var.domain
-    port = 993
+    name     = var.domain
+    port     = 993
     priority = 0
-    proto = "_tcp"
-    service = "_imaps"
-    target = "imap.migadu.com"
-    weight = 1
+    proto    = "_tcp"
+    service  = "_imaps"
+    target   = "imap.migadu.com"
+    weight   = 1
   }
 }
