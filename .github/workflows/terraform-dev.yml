@@ -68,30 +68,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: List
-      run:
-        ls -la
-
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
-    - name: Change directory
-      run:
-        cd ${{vars.TERRAFORM_PATH}}
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      working-directory: ${{vars.TERRAFORM_PATH}}
+      run: terraform init
 
-    - name: List
-      run:
-        ls -la
-   
-#    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-#    - name: Terraform Init
-#      run: terraform init
-#
-#    # Checks that all Terraform configuration files adhere to a canonical format
-#    - name: Terraform Format
-#      run: terraform fmt -check
-#
-#    # Generates an execution plan for Terraform
-#    - name: Terraform Plan
-#      run: terraform plan -input=false -var='cloudflare_api_token=${{secrets.CLOUDFLARE_TOKEN}}' -var='cloudflare_zone_id=${{vars.CLOUDFLARE_ZONE_ID}}'
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      working-directory: ${{vars.TERRAFORM_PATH}}
+      run: terraform fmt -check
+
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      working-directory: ${{vars.TERRAFORM_PATH}}
+      run: terraform plan -input=false -var='cloudflare_api_token=${{secrets.CLOUDFLARE_TOKEN}}' -var='cloudflare_zone_id=${{vars.CLOUDFLARE_ZONE_ID}}'
