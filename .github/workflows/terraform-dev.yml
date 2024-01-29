@@ -57,8 +57,6 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: tauri-ops-test.dev
-    env:
-      TERRAFORM_CLI_PATH: ${{vars.TERRAFORM_PATH}}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -76,12 +74,18 @@ jobs:
    
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
+      env:
+        TERRAFORM_CLI_PATH: ${{vars.TERRAFORM_PATH}}
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
+      env:
+        TERRAFORM_CLI_PATH: ${{vars.TERRAFORM_PATH}}
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
+      env:
+        TERRAFORM_CLI_PATH: ${{vars.TERRAFORM_PATH}}
       run: terraform plan -input=false -var='cloudflare_api_token=${{secrets.CLOUDFLARE_TOKEN}}' -var='cloudflare_zone_id=${{vars.CLOUDFLARE_ZONE_ID}}'
