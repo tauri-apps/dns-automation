@@ -8,4 +8,5 @@ resource "cloudflare_record" "mail_verify" {
   type    = "TXT"
   name    = var.domain
   value   = "hosted-email-verify=ld6btrgm"
+  comment = "Migadu validation"
 }
