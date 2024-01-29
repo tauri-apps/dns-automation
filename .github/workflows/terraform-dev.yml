@@ -90,4 +90,5 @@ jobs:
     # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"dev"' && github.event_name == 'push'
+      working-directory: ${{vars.TERRAFORM_PATH}}
       run: terraform apply -auto-approve -input=false -var='cloudflare_api_token=${{secrets.CLOUDFLARE_TOKEN}}' -var='cloudflare_zone_id=${{vars.CLOUDFLARE_ZONE_ID}}'
