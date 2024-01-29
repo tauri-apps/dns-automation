@@ -70,27 +70,22 @@ jobs:
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Change directory
       run:
-        wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-        echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-        apt update && apt install -y terraform
-      
+        cd ${{vars.TERRAFORM_PATH}}
+
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      env:
-        TERRAFORM_CLI_PATH: ${{vars.TERRAFORM_PATH}}
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      env:
-        TERRAFORM_CLI_PATH: ${{vars.TERRAFORM_PATH}}
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      env:
-        TERRAFORM_CLI_PATH: ${{vars.TERRAFORM_PATH}}
       run: terraform plan -input=false -var='cloudflare_api_token=${{secrets.CLOUDFLARE_TOKEN}}' -var='cloudflare_zone_id=${{vars.CLOUDFLARE_ZONE_ID}}'
 
       # On push to "dev", build or change infrastructure according to Terraform configuration files
