@@ -47,6 +47,7 @@ name: 'Terraform tauri-ops-test.dev'
 on:
   push:
     branches: [ "dev" ]
+  pull_request:
 
 permissions:
   contents: read
