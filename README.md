@@ -2,7 +2,7 @@
 
 This repo will manage DNS records automagically. Implementing Infrastructure as Code & GitOps practices.
 
-Currently we added workflows for handling tauri-ops-test.dev and tauri-ops-test.dev on Cloudflare. You'll find directories for those DNS zones in ./terraform.
+Currently we added workflows for handling tauri-ops-test.dev and tauri-ops-test.net on Cloudflare. You'll find directories for those DNS zones in ./terraform.
 
 In those you can copy one of the record-*.tf files and modify it for the new record you want. It will be applied when the commit is pushed to 'dev' branch by pull request or manually.
 
